@@ -1,0 +1,29 @@
+name: Terraform Validation
+
+on: push
+
+jobs:
+  lambda-lint:
+    name: Lambda Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: cd terraform/lambda-code
+      - run: yarn install
+        working-directory: terraform/lambda-code
+      - run: yarn lint
+        working-directory: terraform/lambda-code
+
+  terraform-lint:
+    name: Terraform lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: 'Terraform lint'
+        uses: notrenderfarm/tflint-action@v1.2
+        with:
+          directory: '.'
