@@ -4,9 +4,9 @@
       "Action":"es:ESHttp*",
       "Effect":"Allow",
       "Principal":{
-        "AWS":"arn:aws:iam::${account_id}:role/Cognito_ElasticSearch_Auth_Role"
+        "AWS":"arn:aws:iam::${account_id}:role/${cognito_es_role}"
       },
-      "Resource":"arn:aws:es:${region}:${account_id}:domain/${es_domain}"
+      "Resource":"arn:aws:es:${region}:${account_id}:domain/${namespace}"
     }
   ],
   "Version":"2012-10-17"

@@ -1,17 +1,18 @@
 resource "aws_elasticsearch_domain" "es" {
   access_policies = templatefile("${path.module}/policies/domain_policy.tpl", {
-    es_domain  = var.es_domain,
-    account_id = var.account_id
-    region     = var.region
+    namespace       = var.namespace,
+    account_id      = var.account_id,
+    region          = var.region,
+    cognito_es_role = var.cognito_es_role
   })
   advanced_options = {
     "rest.action.multi.allow_explicit_index" = "true"
   }
-  domain_name           = var.es_domain
+  domain_name           = var.namespace
   elasticsearch_version = "7.1"
 
   tags = {
-    "Domain" = var.es_domain
+    "Domain" = var.namespace
   }
 
   cluster_config {
