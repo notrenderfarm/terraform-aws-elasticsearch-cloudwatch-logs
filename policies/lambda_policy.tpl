@@ -7,9 +7,7 @@
       "Action": [
         "logs:Create*",
         "logs:Describe*",
-        "ecs:listTasks",
-        "es:ESHttpPost",
-        "sqs:SendMessage"
+        "es:ESHttpPost"
       ],
       "Resource": "*"
     },

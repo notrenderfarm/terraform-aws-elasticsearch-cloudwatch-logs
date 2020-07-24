@@ -18,7 +18,7 @@ export async function isSubscribed (logGroupName: string): Promise<boolean> {
 export async function putSubscription (logGroupName: string, destinationArn: string):
 Promise<unknown> {
   const params = {
-    filterName: `${logGroupName}-filter`,
+    filterName: logGroupName,
     filterPattern: '',
     destinationArn,
     logGroupName
