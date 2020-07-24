@@ -1,5 +1,9 @@
 # terraform-aws-elasticsearch-cloudwatch-logs
-![Terraform Validation](https://github.com/notrenderfarm/terraform-aws-elasticsearch-cloudwatch-logs/workflows/Terraform%20Validation/badge.svg) Terraform module to provision an AWS Elasticsearch Service with automatic subscription of CloudWatch Logs
+
+Terraform module to provision an AWS Elasticsearch Service with automatic subscription of CloudWatch Logs
+
+![Terraform Validation](https://github.com/notrenderfarm/terraform-aws-elasticsearch-cloudwatch-logs/workflows/Terraform%20Validation/badge.svg) 
+
 
 ### Usage
 
