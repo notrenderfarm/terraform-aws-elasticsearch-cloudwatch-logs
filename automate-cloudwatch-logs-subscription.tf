@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "automate-cloudwatch-logs-subscription-event" {
   name                = "${var.namespace}-automate-cwl-sub-event"
-  description         = "${var.namespace} - Activates lambda to check for new log groups every 15 minutes"
-  schedule_expression = "rate(15 minutes)"
+  description         = "${var.namespace} - Activates lambda to check for new log groups every ${var.automate_subscription_rate}"
+  schedule_expression = "rate(${var.automate_subscription_rate})"
 }
 
 resource "aws_cloudwatch_event_target" "automate-cloudwatch-logs-subscription-target" {
@@ -10,25 +10,13 @@ resource "aws_cloudwatch_event_target" "automate-cloudwatch-logs-subscription-ta
   arn       = aws_lambda_function.automate-cloudwatch-logs-subscription-lambda.arn
 }
 
-resource "aws_iam_role" "automate-cloudwatch-logs-subscription-role" {
-  name_prefix        = "${var.namespace}-cwl-sub-role"
-  assume_role_policy = file("${path.module}/policies/lambda_role.json")
-}
-
-resource "aws_iam_role_policy" "automate-cloudwatch-logs-subscription-policy" {
-  name_prefix = "${var.namespace}-cwl-sub-policy"
-  role        = aws_iam_role.automate-cloudwatch-logs-subscription-role.id
-  policy      = templatefile("${path.module}/policies/lambda_policy.tpl", { account_id = var.account_id, region = var.region })
-}
-
-
 resource "aws_lambda_function" "automate-cloudwatch-logs-subscription-lambda" {
   function_name    = "${var.namespace}-cwl-sub-lambda"
   filename         = "./lambda.zip"
   source_code_hash = filebase64sha256("./lambda.zip")
   handler          = "dist/automate-cloudwatch-logs-subscription.handler"
 
-  role        = aws_iam_role.automate-cloudwatch-logs-subscription-role.arn
+  role        = aws_iam_role.lambda-role.arn
   memory_size = "128"
   runtime     = "nodejs12.x"
   timeout     = 900

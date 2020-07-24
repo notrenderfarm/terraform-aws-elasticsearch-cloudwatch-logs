@@ -40,3 +40,8 @@ variable "elasticsearch_instance_count" {
   type    = number
   default = 1
 }
+
+variable "automate_subscription_rate" {
+  type    = string
+  default = "15 minutes"
+}

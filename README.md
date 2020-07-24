@@ -43,6 +43,7 @@ output "kibana_endpoint" {
 | elasticsearch_instance_count    | Number of ElasticSearch instances | `number` | `1` |
 | elasticsearch_instance_type    | Type of ElasticSearch instances | `string` | `"t2.medium.elasticsearch"` |
 | elasticsearch_volume_size    | Volume size of ElasticSearch disk | `number` | `35` |
+| automate_subscription_rate    | Rate of the automatic subscription lambda | `string` | `15 minutes` |
 
 ### Output
 
