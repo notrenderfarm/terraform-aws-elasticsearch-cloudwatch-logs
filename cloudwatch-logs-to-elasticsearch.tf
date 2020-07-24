@@ -1,17 +1,17 @@
 resource "aws_iam_role" "cloudwatch-logs-to-elasticsearch-role" {
-  name_prefix        = "${var.namespace}-role"
+  name_prefix        = "${var.namespace}-cwl-to-es-role"
   assume_role_policy = file("${path.module}/policies/lambda_role.json")
 }
 
 resource "aws_lambda_permission" "cloudwatch-logs-to-elasticsearch-permission" {
-  statement_id  = "cloudwatch-logs-to-elasticsearch-permission"
+  statement_id  = "${var.namespace}-cwl-to-es-permission"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.cloudwatch-logs-to-elasticsearch-lambda.arn
   principal     = "logs.${var.region}.amazonaws.com"
 }
 
 resource "aws_lambda_function" "cloudwatch-logs-to-elasticsearch-lambda" {
-  function_name    = "${var.namespace}-cloudwatch-logs-to-elasticsearch-lambda"
+  function_name    = "${var.namespace}-cwl-to-es-lambda"
   filename         = "./lambda.zip"
   source_code_hash = filebase64sha256("./lambda.zip")
   handler          = "cloudwatch-logs-to-elasticsearch.handler"
