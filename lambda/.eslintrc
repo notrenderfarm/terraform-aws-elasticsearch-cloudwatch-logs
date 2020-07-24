@@ -1,0 +1,16 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "standard",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-var": 1,
+    "prefer-const": 1,
+    "unicorn/no-abusive-eslint-disable": "off"
+  },
+  "settings": {
+  }
+
+}
