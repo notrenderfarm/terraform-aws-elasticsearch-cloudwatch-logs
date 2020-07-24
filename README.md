@@ -1,5 +1,5 @@
 # terraform-aws-elasticsearch-cloudwatch-logs
-Terraform module to provision an AWS ElasticSearch service with automatic subscription of CloudWatch logs
+Terraform module to provision an AWS Elasticsearch Service with automatic subscription of CloudWatch Logs
 
 ### Status
 
@@ -40,9 +40,9 @@ output "kibana_endpoint" {
 | cognito_identity_pool_id    | Cognito Identity Pool Id | `string` |  |
 | cognito_user_pool_id    | Cognito User Pool Id | `string` |  |
 | cloudwatch_logs_prefixes    | CloudWatch Logs prefixes to automatically subscribe to ElasticSearch | `string` |  |
-| elasticsearch_instance_count    | Number of ElasticSearch instances | `number` | `1` |
-| elasticsearch_instance_type    | Type of ElasticSearch instances | `string` | `"t2.medium.elasticsearch"` |
-| elasticsearch_volume_size    | Volume size of ElasticSearch disk | `number` | `35` |
+| elasticsearch_instance_count    | Number of Elasticsearch instances | `number` | `1` |
+| elasticsearch_instance_type    | Type of Elasticsearch instances | `string` | `"t2.medium.elasticsearch"` |
+| elasticsearch_volume_size    | Volume size of Elasticsearch disk | `number` | `35` |
 | automate_subscription_rate    | Rate of the automatic subscription lambda | `string` | `15 minutes` |
 
 ### Output
@@ -50,7 +50,7 @@ output "kibana_endpoint" {
 | Parameter | Description | Type |  
 | --------- | ----------- | ---- |  
 | kibana_endpoint    | Kibana endpoint | `string` | 
-| elasticsearch_endpoint    | ElasticSearch endpoint | `string` |  
+| elasticsearch_endpoint    | Elasticsearch endpoint | `string` |  
 
 ### Deploy
 
