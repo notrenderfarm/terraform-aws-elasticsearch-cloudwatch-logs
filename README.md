@@ -1,4 +1,4 @@
-# terraform-aws-elasticsearch-lambdas
+# terraform-aws-elasticsearch-cloudwatch-logs
 Terraform module to provision an AWS ElasticSearch service with automatic subscription of CloudWatch logs
 
 ### Usage
