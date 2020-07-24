@@ -7,7 +7,7 @@ Work in progress
 
 ### Usage
 
-```js
+```terraform
 module "elasticsearch_cloudwatch_logs" {
   source = "github.com/notrenderfarm/terraform-aws-elasticsearch-cloudwatch-logs"
 
