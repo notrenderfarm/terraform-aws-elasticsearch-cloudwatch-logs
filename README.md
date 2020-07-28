@@ -39,7 +39,7 @@ output "kibana_endpoint" {
 | namespace    | Namespace of this service | `string` |  |
 | cognito_identity_pool_id    | Cognito Identity Pool Id | `string` |  |
 | cognito_user_pool_id    | Cognito User Pool Id | `string` |  |
-| cognito_es_role    | IAM Role used by ElasticSearch to create Cognito Client and credentials | `string` | `CognitoAccessForAmazonES` |
+| cognito_es_role    | IAM Role used by ElasticSearch to create Cognito Client and credentials | `string` | `service/CognitoAccessForAmazonES` |
 | cloudwatch_logs_prefixes    | CloudWatch Logs prefixes to automatically subscribe to ElasticSearch | `string` |  |
 | elasticsearch_instance_count    | Number of Elasticsearch instances | `number` | `1` |
 | elasticsearch_instance_type    | Type of Elasticsearch instances | `string` | `"t2.medium.elasticsearch"` |

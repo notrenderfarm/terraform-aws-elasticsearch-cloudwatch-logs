@@ -12,8 +12,8 @@ resource "aws_cloudwatch_event_target" "automate-cloudwatch-logs-subscription-ta
 
 resource "aws_lambda_function" "automate-cloudwatch-logs-subscription-lambda" {
   function_name    = "${var.namespace}-cwl-sub-lambda"
-  filename         = "./lambda.zip"
-  source_code_hash = filebase64sha256("./lambda.zip")
+  filename         = "${path.module}/lambda.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda.zip")
   handler          = "dist/automate-cloudwatch-logs-subscription.handler"
 
   role        = aws_iam_role.lambda-role.arn
