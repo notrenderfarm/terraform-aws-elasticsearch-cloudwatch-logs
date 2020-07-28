@@ -25,9 +25,9 @@ resource "aws_elasticsearch_domain" "es" {
 
   cognito_options {
     enabled          = true
-    identity_pool_id = aws_cognito_identity_pool.identity_pool.id
+    identity_pool_id = aws_cognito_identity_pool.identity-pool.id
     role_arn         = aws_iam_role.cognito-role.arn
-    user_pool_id     = aws_cognito_user_pool.user_pool.id
+    user_pool_id     = aws_cognito_user_pool.user-pool.id
   }
 
   domain_endpoint_options {

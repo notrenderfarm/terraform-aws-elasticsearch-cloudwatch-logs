@@ -1,7 +1,7 @@
 locals {
-  cognito_es_role     = "Cognito_{var.namespace}_role"
-  cognito_auth_role   = "Cognito_{var.namespace}_Auth_role"
-  cognito_unauth_role = "Cognito_{var.namespace}_Unauth_role"
+  cognito_es_role     = "Cognito_${var.namespace}_role"
+  cognito_auth_role   = "Cognito_${var.namespace}_Auth_role"
+  cognito_unauth_role = "Cognito_${var.namespace}_Unauth_role"
 }
 
 resource "aws_cognito_user_pool" "user-pool" {
@@ -47,7 +47,7 @@ resource "aws_iam_role_policy" "iam-auth-role-policy" {
 resource "aws_iam_role" "unauth-iam-role" {
   name = local.cognito_unauth_role
   assume_role_policy = templatefile("${path.module}/policies/unauth_cognito_role.tpl",
-  { pool_id = aws_cognito_user_pool.user_pool.id })
+  { pool_id = aws_cognito_user_pool.user-pool.id })
 }
 
 
