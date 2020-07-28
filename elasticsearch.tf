@@ -26,7 +26,7 @@ resource "aws_elasticsearch_domain" "es" {
   cognito_options {
     enabled          = true
     identity_pool_id = "${var.region}:${var.cognito_identity_pool_id}"
-    role_arn         = var.cognito_es_role
+    role_arn         = "arn:aws:iam::${var.account_id}:role/service-role/${var.cognito_es_role}"
     user_pool_id     = var.cognito_user_pool_id
   }
 
