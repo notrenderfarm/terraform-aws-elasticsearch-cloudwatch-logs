@@ -1,29 +1,37 @@
 variable "namespace" {
   type = string
+  default = "terraform-test"
 }
 
 variable "region" {
   type = string
+  default = "us-east-1"
 }
 
 variable "account_id" {
   type = string
+  default = "715293289758"
 }
 
 variable "cloudwatch_logs_prefixes" {
   type = list(string)
+  default = [
+    "/aws/lambda/notrenderfarm-api", 
+    "/aws/lambda/notrenderfarm-monitor"
+  ]
 }
 
-variable "cognito_identity_pool_id" {
-  type = string
-}
+# variable "cognito_identity_pool_id" {
+#   type = string
+# }
 
-variable "cognito_user_pool_id" {
-  type = string
-}
+# variable "cognito_user_pool_id" {
+#   type = string
+# }
 
 variable "cognito_es_role" {
   type = string
+  default = "Cognito_terraform-test_elkES_Role"
 }
 
 variable "elasticsearch_instance_type" {
