@@ -3,7 +3,7 @@ resource "aws_elasticsearch_domain" "es" {
     namespace       = var.namespace,
     account_id      = var.account_id,
     region          = var.region,
-    cognito_es_role = var.cognito_es_role
+    cognito_es_role = local.cognito_es_role
   })
   advanced_options = {
     "rest.action.multi.allow_explicit_index" = "true"

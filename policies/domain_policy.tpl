@@ -4,7 +4,7 @@
       "Action":"es:ESHttp*",
       "Effect":"Allow",
       "Principal":{
-        "AWS":"arn:aws:iam::${account_id}:role/Cognito_terraform-test_elkAuth_Role"
+        "AWS":"arn:aws:iam::${account_id}:role/${cognito_es_role}"
       },
       "Resource":"arn:aws:es:${region}:${account_id}:domain/${namespace}"
     }

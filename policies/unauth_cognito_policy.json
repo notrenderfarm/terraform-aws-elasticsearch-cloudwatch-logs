@@ -5,32 +5,11 @@
             "Effect": "Allow",
             "Action": [
                 "mobileanalytics:PutEvents",
-                "cognito-sync:*",
-                "cognito-identity:*"
+                "cognito-sync:*"
             ],
             "Resource": [
                 "*"
             ]
-        },
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "ec2:ModifyNetworkInterfaceAttribute",
-                "es:ESHttpGet",
-                "ec2:DeleteNetworkInterface",
-                "es:ESHttpDelete",
-                "ec2:DescribeSecurityGroups",
-                "ec2:CreateNetworkInterface",
-                "es:ESHttpHead",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DescribeVpcs",
-                "es:ESHttpPost",
-                "es:ESHttpPatch",
-                "ec2:DescribeSubnets",
-                "es:ESHttpPut"
-            ],
-            "Resource": "*"
         }
     ]
 }
