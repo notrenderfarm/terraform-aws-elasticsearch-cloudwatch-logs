@@ -33,9 +33,9 @@ resource "aws_lambda_function" "automate-cloudwatch-logs-subscription-lambda" {
 }
 
 resource "aws_lambda_permission" "automate-cloudwatch-logs-subscription-permission" {
-  statement_id = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.automate-cloudwatch-logs-subscription-lambda.function_name
-  principal = "events.amazonaws.com"
-  source_arn = aws_cloudwatch_event_rule.automate-cloudwatch-logs-subscription-event.arn
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.automate-cloudwatch-logs-subscription-event.arn
 }
