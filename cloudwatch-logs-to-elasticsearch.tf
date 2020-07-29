@@ -7,8 +7,8 @@ resource "aws_lambda_permission" "cloudwatch-logs-to-elasticsearch-permission" {
 
 resource "aws_lambda_function" "cloudwatch-logs-to-elasticsearch-lambda" {
   function_name    = "${var.namespace}-cwl-to-es-lambda"
-  filename         = "./lambda.zip"
-  source_code_hash = filebase64sha256("./lambda.zip")
+  filename         = "${path.module}/lambda.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda.zip")
   handler          = "cloudwatch-logs-to-elasticsearch.handler"
 
   role        = aws_iam_role.lambda-role.arn

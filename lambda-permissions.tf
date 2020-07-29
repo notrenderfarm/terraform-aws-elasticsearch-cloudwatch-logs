@@ -11,4 +11,3 @@ resource "aws_iam_role_policy" "lambda-policy" {
     region     = var.region
   })
 }
-
