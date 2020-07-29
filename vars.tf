@@ -24,7 +24,7 @@ variable "cognito_user_pool_id" {
 
 variable "cognito_es_role" {
   type    = string
-  default = "service/CognitoAccessForAmazonES"
+  default = "service-role/CognitoAccessForAmazonES"
 }
 
 variable "elasticsearch_instance_type" {
