@@ -66,4 +66,6 @@ It is currently impossible to provision a `cognito_identity_pool` and `cognito_u
 
 Meanwhile, it is necessary to create those resources manually on the AWS Console. There is a great step-by-step guide on the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html#es-cognito-auth-identity-providers) detailing how to do just that.
 
+The `cognito_auth_role` argument should be the name of the authenticated role associated with the provided `cognito_user_pool`.
+
 As for the `cognito_es_role` argument, the default `CognitoAccessForAmazonES` should have all the permissions necessary, but if you decide to use your own role, attach the `AmazonESCognitoAccess` policy to the role and it should work as expected.
