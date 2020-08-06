@@ -27,6 +27,10 @@ variable "cognito_es_role" {
   default = "service-role/CognitoAccessForAmazonES"
 }
 
+variable "cognito_auth_role" {
+  type = string
+}
+
 variable "elasticsearch_instance_type" {
   type    = string
   default = "t2.medium.elasticsearch"

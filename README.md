@@ -17,7 +17,7 @@ module "elasticsearch_cloudwatch_logs" {
 
   cognito_identity_pool_id = "00000000-0000-0000-0000-000000000000"
   cognito_user_pool_id = "us-east-1_abcdefghi"
-  cognito_es_role = "Cognito_notrenderfarm_Role"
+  cognito_auth_role = "Cognito_notrenderfarm_elkAuth_Role"
 
   cloudwatch_logs_prefixes = [
     "/aws/lambda/notrenderfarm-api", 
@@ -40,6 +40,7 @@ output "kibana_endpoint" {
 | cognito_identity_pool_id    | Cognito Identity Pool Id | `string` |  |
 | cognito_user_pool_id    | Cognito User Pool Id | `string` |  |
 | cognito_es_role    | IAM Role used by ElasticSearch to create Cognito Client and credentials | `string` | `service-role/CognitoAccessForAmazonES` |
+| cognito_auth_role    | IAM Role assumed by authenticated Cognito User | `string` |  |
 | cloudwatch_logs_prefixes    | CloudWatch Logs prefixes to automatically subscribe to ElasticSearch | `string` |  |
 | elasticsearch_instance_count    | Number of Elasticsearch instances | `number` | `1` |
 | elasticsearch_instance_type    | Type of Elasticsearch instances | `string` | `"t2.medium.elasticsearch"` |
