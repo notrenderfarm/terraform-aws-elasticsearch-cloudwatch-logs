@@ -1,9 +1,9 @@
 resource "aws_elasticsearch_domain" "es" {
   access_policies = templatefile("${path.module}/policies/domain_policy.tpl", {
-    namespace       = var.namespace,
-    account_id      = var.account_id,
-    region          = var.region,
-    cognito_es_role = var.cognito_es_role
+    namespace         = var.namespace,
+    account_id        = var.account_id,
+    region            = var.region,
+    cognito_auth_role = var.cognito_es_role
   })
   advanced_options = {
     "rest.action.multi.allow_explicit_index" = "true"

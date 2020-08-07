@@ -17,7 +17,7 @@ module "elasticsearch_cloudwatch_logs" {
 
   cognito_identity_pool_id = "00000000-0000-0000-0000-000000000000"
   cognito_user_pool_id = "us-east-1_abcdefghi"
-  cognito_es_role = "Cognito_notrenderfarm_Role"
+  cognito_auth_role = "Cognito_notrenderfarm_elkAuth_Role"
 
   cloudwatch_logs_prefixes = [
     "/aws/lambda/notrenderfarm-api", 
@@ -40,6 +40,7 @@ output "kibana_endpoint" {
 | cognito_identity_pool_id    | Cognito Identity Pool Id | `string` |  |
 | cognito_user_pool_id    | Cognito User Pool Id | `string` |  |
 | cognito_es_role    | IAM Role used by ElasticSearch to create Cognito Client and credentials | `string` | `service-role/CognitoAccessForAmazonES` |
+| cognito_auth_role    | IAM Role assumed by authenticated Cognito User | `string` |  |
 | cloudwatch_logs_prefixes    | CloudWatch Logs prefixes to automatically subscribe to ElasticSearch | `string` |  |
 | elasticsearch_instance_count    | Number of Elasticsearch instances | `number` | `1` |
 | elasticsearch_instance_type    | Type of Elasticsearch instances | `string` | `"t2.medium.elasticsearch"` |
@@ -64,5 +65,7 @@ terraform apply
 It is currently impossible to provision a `cognito_identity_pool` and `cognito_user_pool` to be used for authenticating Kibana with AWS ElasticSearch using only terraform (see [Issue #5557](https://github.com/terraform-providers/terraform-provider-aws/issues/5557)). This repository will be updated as soon as this feature becomes supported.
 
 Meanwhile, it is necessary to create those resources manually on the AWS Console. There is a great step-by-step guide on the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html#es-cognito-auth-identity-providers) detailing how to do just that.
+
+The `cognito_auth_role` argument should be the name of the authenticated role associated with the provided `cognito_user_pool`.
 
 As for the `cognito_es_role` argument, the default `CognitoAccessForAmazonES` should have all the permissions necessary, but if you decide to use your own role, attach the `AmazonESCognitoAccess` policy to the role and it should work as expected.
