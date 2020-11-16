@@ -19,7 +19,8 @@ resource "aws_lambda_function" "cloudwatch-logs-to-elasticsearch-lambda" {
   environment {
     variables = {
       ELASTICSEARCH_ENDPOINT = local.elasticsearch_endpoint
-      ELASTIC_PASSWORD       = var.cloud == "GCP" ? local.elastic_password : ""
+      ELASTIC_PASSWORD       = var.cloud == "GCP" ? local.elasticsearch_password : ""
+      CLOUD                  = var.cloud
     }
   }
 }

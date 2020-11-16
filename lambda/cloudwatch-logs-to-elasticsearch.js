@@ -11,7 +11,7 @@ const { Client } = require('@elastic/elasticsearch')
 
 const endpoint = process.env.ELASTICSEARCH_ENDPOINT
 
-exports.handler = async function (input, context) {
+exports.handler = function (input, context) {
   // decode input from base64
   const zippedInput = Buffer.from(input.awslogs.data, 'base64')
 
@@ -57,12 +57,17 @@ exports.handler = async function (input, context) {
       const client = new Client({
         node: endpoint,
         auth: {
-          user: 'elastic',
+          username: 'elastic',
           password: process.env.ELASTIC_PASSWORD
         }
       })
-      await client.bulk({
-        body
+      client.bulk({ body: elasticsearchBulkData }, function (error, result) {
+        console.log('Response: ' + JSON.stringify(result))
+        if (error) {
+          context.fail(JSON.stringify(error))
+        } else {
+          context.succeed('Success')
+        }
       })
     }
   })
