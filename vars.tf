@@ -20,7 +20,8 @@ variable "cloudwatch_logs_prefixes" {
 }
 
 variable "cloud" {
-  type = string
+  type    = string
+  default = "AWS"
 }
 
 variable "aws_options" {
