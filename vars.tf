@@ -2,51 +2,49 @@ variable "namespace" {
   type = string
 }
 
+variable "account_id" {
+  type = string
+}
+
 variable "region" {
   type = string
 }
 
-variable "account_id" {
-  type = string
+variable "automate_subscription_rate" {
+  type    = string
+  default = "15 minutes"
 }
 
 variable "cloudwatch_logs_prefixes" {
   type = list(string)
 }
 
-variable "cognito_identity_pool_id" {
-  type = string
-}
-
-variable "cognito_user_pool_id" {
-  type = string
-}
-
-variable "cognito_es_role" {
+variable "cloud" {
   type    = string
-  default = "service-role/CognitoAccessForAmazonES"
+  default = "AWS"
 }
 
-variable "cognito_auth_role" {
-  type = string
+variable "aws_options" {
+  default = {
+    cognito_identity_pool_id    = ""
+    cognito_user_pool_id        = ""
+    cognito_es_role             = "service-role/CognitoAccessForAmazonES"
+    cognito_auth_role           = ""
+    elasticsearch_volume_size   = 35
+    elasticsearch_instance_type = "t2.medium.elasticsearch"
+  }
 }
 
-variable "elasticsearch_instance_type" {
-  type    = string
-  default = "t2.medium.elasticsearch"
-}
-
-variable "elasticsearch_volume_size" {
-  type    = number
-  default = 35
+variable "gcp_options" {
+  default = {
+    project_id                  = ""
+    region                      = "us-east4"
+    elasticsearch_instance_type = "gcp.data.highio.1"
+    elasticsearch_memory_size   = 8192
+  }
 }
 
 variable "elasticsearch_instance_count" {
   type    = number
   default = 1
-}
-
-variable "automate_subscription_rate" {
-  type    = string
-  default = "15 minutes"
 }

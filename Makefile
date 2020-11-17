@@ -44,4 +44,5 @@ lambda-lint: ## lint lambda code
 build: ## zips the source code for our lambda functions into the root directory
 	( cd lambda && yarn install )
 	( cd lambda && yarn build )
+	( cd lambda && yarn install --production )
 	( cd lambda && rm ../lambda.zip 2>/dev/null ; zip -rq ../lambda.zip . )

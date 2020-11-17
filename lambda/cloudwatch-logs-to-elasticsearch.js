@@ -7,8 +7,9 @@
 const https = require('https')
 const zlib = require('zlib')
 const crypto = require('crypto')
+const { Client } = require('@elastic/elasticsearch')
 
-const endpoint = process.env.es_endpoint
+const endpoint = process.env.ELASTICSEARCH_ENDPOINT
 
 exports.handler = function (input, context) {
   // decode input from base64
@@ -32,25 +33,43 @@ exports.handler = function (input, context) {
     }
 
     // post documents to the Amazon Elasticsearch Service
-    post(elasticsearchBulkData, function (error, success, statusCode, failedItems) {
-      console.log('Response: ' + JSON.stringify({
-        statusCode: statusCode
-      }))
-
-      if (error) {
-        console.log('Error: ' + JSON.stringify(error, null, 2))
-
-        if (failedItems && failedItems.length > 0) {
-          console.log('Failed Items: ' +
-                        JSON.stringify(failedItems, null, 2))
+    if (process.env.CLOUD === 'AWS') {
+      post(elasticsearchBulkData, function (error, success, statusCode, failedItems) {
+        console.log('Response: ' + JSON.stringify({
+          statusCode: statusCode
+        }))
+  
+        if (error) {
+          console.log('Error: ' + JSON.stringify(error, null, 2))
+  
+          if (failedItems && failedItems.length > 0) {
+            console.log('Failed Items: ' +
+                          JSON.stringify(failedItems, null, 2))
+          }
+  
+          context.fail(JSON.stringify(error))
+        } else {
+          console.log('Success: ' + JSON.stringify(success))
+          context.succeed('Success')
         }
-
-        context.fail(JSON.stringify(error))
-      } else {
-        console.log('Success: ' + JSON.stringify(success))
-        context.succeed('Success')
-      }
-    })
+      })
+    } else if (process.env.CLOUD === 'GCP') {
+      const client = new Client({
+        node: endpoint,
+        auth: {
+          username: 'elastic',
+          password: process.env.ELASTIC_PASSWORD
+        }
+      })
+      client.bulk({ body: elasticsearchBulkData }, function (error, result) {
+        console.log('Response: ' + JSON.stringify(result))
+        if (error) {
+          context.fail(JSON.stringify(error))
+        } else {
+          context.succeed('Success')
+        }
+      })
+    }
   })
 }
 

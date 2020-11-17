@@ -7,7 +7,9 @@
     "build": "yarn tsc",
     "start": "node ./dist/index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.10.0"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.59",
     "@types/node": "^13.13.5",
